@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MyController {
 	
 
-		
 	private List<Movie> getBestMovies(){
 		
 		return Arrays.asList(new Movie[] {
@@ -42,26 +41,33 @@ public class MyController {
 	}
 	
 	
-	@GetMapping("/ciao")
-	public String sayHello(Model model,
-							@RequestParam(name = "name") String name) {
-		
-		model.addAttribute("name", name);
-		
-		return "index";
-	}
+//	@GetMapping("/ciao")
+//	public String sayHello(Model model,
+//							@RequestParam(name = "name") String name) {
+//		
+//		model.addAttribute("name", name);
+//		
+//		return "index";
+//	}
+	
+
 	
 	@GetMapping("/movies")
 	public String getMovies(Model model){
 		
-		String mts = "";
-		for(Movie m : getBestMovies()) {
-			
-			mts += m.getTitolo() + ", ";
-		}
-		mts = mts.substring(0, mts.length() -2);
+//		String mts = "";
+//		for(Movie m : getBestMovies()) {
+//			
+//			mts += m.getTitolo() + ", ";
+//		}
+//		mts = mts.substring(0, mts.length() -2);
+//		
+//		model.addAttribute("movieTitles",mts);
 		
-		model.addAttribute("movieTitles",mts);
+		List<Movie> movies = getBestMovies();
+		
+		model.addAttribute("movies", movies);
+	
 		
 		return "movies";
 	}
@@ -88,17 +94,22 @@ public class MyController {
 	@GetMapping("/songs")
 	public String getSongs(Model model){
 		
-		String mts = "";
-		for(Song s : getBestSongs()) {
-			
-			mts += s.getTitolo() + ", ";
-		}
-		mts = mts.substring(0, mts.length() -2);
+//		String mts = "";
+//		for(Song s : getBestSongs()) {
+//			
+//			mts += s.getTitolo() + ", ";
+//		}
+//		mts = mts.substring(0, mts.length() -2);
+//		
+//		model.addAttribute("songTitles", mts);
 		
-		model.addAttribute("songTitles", mts);
+		List<Song> songs = getBestSongs();
+		
+		model.addAttribute("songs", songs);
 		
 		return "songs";
 	}
+	
 	@GetMapping("songs/{id}")
 	public String getSong(Model model,
 		@PathVariable("id") int id) {
